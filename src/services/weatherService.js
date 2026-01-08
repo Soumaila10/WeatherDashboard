@@ -81,12 +81,12 @@ export const getWeatherData = async (city) => {
 
   try {
     // 1. Get Current Weather
-    const currentRes = await fetch(`${BASE_URL}/weather?q=${city}&units=metric&lang=fr&appid=${API_KEY}`);
+    const currentRes = await fetch(`${BASE_URL}/weather?q=${encodeURIComponent(city)}&units=metric&lang=fr&appid=${API_KEY}`);
     if (!currentRes.ok) throw new Error("City not found");
     const currentData = await currentRes.json();
 
     // 2. Get Forecast
-    const forecastRes = await fetch(`${BASE_URL}/forecast?q=${city}&units=metric&lang=fr&appid=${API_KEY}`);
+    const forecastRes = await fetch(`${BASE_URL}/forecast?q=${encodeURIComponent(city)}&units=metric&lang=fr&appid=${API_KEY}`);
     if (!forecastRes.ok) throw new Error("Forecast not found");
     const forecastData = await forecastRes.json();
 
